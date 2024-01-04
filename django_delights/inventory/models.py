@@ -23,7 +23,7 @@ class Ingredient(models.Model):
         default='each')
 
     def __str__(self) -> str:
-        return f"{self.quantity} of {self.name}"
+        return f"{str.title(self.name)}"
 
 class MenuItem(models.Model):
     name = models.CharField(max_length = 200)
@@ -40,8 +40,7 @@ class RecipeRequirement(models.Model):
 class Purchase(models.Model):
     item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     time = models.DateTimeField(default=timezone.now)
-    f_time = dateformat.format(time, 'Y/m/d')
 
     def __str__(self):
-        return f"{self.item} on {self.f_time}"
+        return f"{self.item}"
     
